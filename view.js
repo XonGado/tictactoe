@@ -4,16 +4,14 @@ class View{
     }
 
     display(game){
-        console.log(game.state.topLeft);
 
-		Object.keys(game.state).forEach(function(key,index) {
-			View.showTileState(game.state[key], index);
-			console.log(game.state[key]);
-			console.log(index);
-		});
+		for (var i = 0; i < game.state.length; i++) {
+			this.showTileState(game.state[i], i);
+		}
+
     }
 
-    static showTileState(tileState, index){
+    showTileState(tileState, index){
     	var tiles = document.getElementsByClassName("tile");
 
     	if (tileState == "o") {

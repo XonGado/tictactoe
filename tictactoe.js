@@ -24,53 +24,18 @@ class TicTacToe{
 
 			for (var i = tiles.length - 1; i >= 0; i--) {
 	   			this.addListenerToTile(tiles[i], i);
-	   		}   		
+	   		}
     	}
     	else {}
     }
 
-	addListenerToTile(tile, key){
+	addListenerToTile(tile, index){
         const that = this;
-        // console.log(that);
-        console.log(tile);
+        console.log(that);
 		tile.addEventListener("click", function(){
-			that.playTurn(TicTacToe.intToPosition(key));
+			that.playTurn(index);
 		});
 	}
-
-    static intToPosition(number){
-        switch(number){
-            case 0:
-                return "topLeft";
-                break;
-            case 1:
-                return "topMiddle";
-                break;
-            case 2:
-                return "topRight";
-                break;
-            case 3:
-                return "centerLeft";
-                break;
-            case 4:
-                return "centerMiddle";
-                break;
-            case 5:
-                return "centerRight";
-                break;
-            case 6:
-                return "bottomLeft";
-                break;
-            case 7:
-                return "bottomMiddle";
-                break;
-            case 8:
-                return "bottomRight";
-                break;
-            default:
-                return "none";
-        }
-    }
 
     playTurn(position){
         if(this.game.isValidMove(position)){
@@ -105,5 +70,6 @@ window.onload = function () {
 	//             }, 1000);
 	//         }, 1000);
 	//     }, 1000);
-	// }, 1000);
+    // }, 1000);
+    
 };

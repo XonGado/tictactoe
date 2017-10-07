@@ -1,23 +1,15 @@
 "use strict";
 
-const PLAYER_X  = "x";
-const PLAYER_O  = "o";
-const BLANK     = "_";
+const PLAYER_X  =   "x";
+const PLAYER_O  =   "o";
+const BLANK     =   "_";
 
+// 3 x 3 Tic Tac Toe
+const BOARD_LENGTH = 9;
 
 class Game {
     constructor(){
-        this.state = {
-            "topLeft":      BLANK,
-            "topMiddle":    BLANK,
-            "topRight":     BLANK,
-            "centerLeft":   BLANK,
-            "centerMiddle": BLANK,
-            "centerRight":  BLANK,
-            "bottomLeft":   BLANK,
-            "bottomMiddle": BLANK,
-            "bottomRight": BLANK
-        }
+        this.state = new Array(BOARD_LENGTH).fill(BLANK);
         this.turnNumber = 1;
         this.currentPlayer = PLAYER_X;
     }
