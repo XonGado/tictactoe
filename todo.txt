@@ -1,0 +1,5 @@
+Todo
+    game.isWin(currentPlayer)
+    game.isOver()
+    game.getAvailableMoves
+    
