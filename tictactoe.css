@@ -1,0 +1,48 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: #555;
+}
+
+.title{
+	font-family: "Gotham Light";
+	text-transform: uppercase;
+	color: white;
+}
+
+#status{
+	font-family: "Roboto Light";
+	font-size: 1em;
+	color: white;
+	font-weight: normal;
+}
+
+.board{
+	display: flex;
+	width: 30em;
+	height: 30em;
+	border: 1px solid #CCC;
+	flex-wrap: wrap;
+}
+
+.tile{
+	width: 33.33%;
+	height: 33.33%;
+	/* border: 1px solid #DDD; */
+	/* background-color: #EEE; */
+}
+
+span.o{
+	display: inline-block;
+	width: 75%;
+	height: 75%;
+	border: 2px solid red;
+}
