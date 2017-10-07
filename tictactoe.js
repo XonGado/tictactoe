@@ -8,10 +8,30 @@
 
 
 class TicTacToe{
-    constructor(game, view){
+    constructor(game, view, gameType){
         this.game = game;
         this.view = view;
+        this.gameType = gameType;
+        this.setUpListeners();
+        console.log("check");
     }
+
+    setUpListeners(){
+    	if (gameType = "PVAI") {
+			var tiles = document.getElementsByClassName("tile");
+
+			for (var i = tile.length - 1; i >= 0; i--) {
+	   			addListenerToTile(tile[i]);
+	   		}   		
+    	}
+    	else {}
+    }
+
+	addListenerToTile(tile){
+		tile.addEventListener("click", function(){
+			console.log(this);
+		});
+	}
 
     playTurn(position){
         if(this.game.isValidMove(position)){
@@ -29,20 +49,22 @@ class TicTacToe{
     }
 }
 
-let game = new Game();
-let view = new View();
+window.onload = function () {
+	console.log("check on load");
+	let game = new Game();
+	let view = new View();
 
-const tictactoe = new TicTacToe(game,view);
-setTimeout(function(){
-    tictactoe.playTurn("topRight");
-    setTimeout(function(){
-        tictactoe.playTurn("topLeft");
-        setTimeout(function(){
-            tictactoe.playTurn("centerRight");
-            setTimeout(function(){
-                tictactoe.playTurn("topRight");
-            }, 1000);
-        }, 1000);
-    }, 1000);
-}, 1000);
-
+	const tictactoe = new TicTacToe(game,view,"PVAI");
+	// setTimeout(function(){
+	//     tictactoe.playTurn("topRight");
+	//     setTimeout(function(){
+	//         tictactoe.playTurn("topLeft");
+	//         setTimeout(function(){
+	//             tictactoe.playTurn("centerRight");
+	//             setTimeout(function(){
+	//                 tictactoe.playTurn("topRight");
+	//             }, 1000);
+	//         }, 1000);
+	//     }, 1000);
+	// }, 1000);
+};
