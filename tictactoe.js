@@ -7,6 +7,8 @@
 // view.display(game);
 
 
+
+
 class TicTacToe{
     constructor(game, view, gameType){
         this.game = game;
@@ -17,21 +19,58 @@ class TicTacToe{
     }
 
     setUpListeners(){
-    	if (gameType = "PVAI") {
+    	if (this.gameType = "PVAI") {
 			var tiles = document.getElementsByClassName("tile");
 
-			for (var i = tile.length - 1; i >= 0; i--) {
-	   			addListenerToTile(tile[i]);
+			for (var i = tiles.length - 1; i >= 0; i--) {
+	   			this.addListenerToTile(tiles[i], i);
 	   		}   		
     	}
     	else {}
     }
 
-	addListenerToTile(tile){
+	addListenerToTile(tile, key){
+        const that = this;
+        // console.log(that);
+        console.log(tile);
 		tile.addEventListener("click", function(){
-			console.log(this);
+			that.playTurn(TicTacToe.intToPosition(key));
 		});
 	}
+
+    static intToPosition(number){
+        switch(number){
+            case 0:
+                return "topLeft";
+                break;
+            case 1:
+                return "topMiddle";
+                break;
+            case 2:
+                return "topRight";
+                break;
+            case 3:
+                return "centerLeft";
+                break;
+            case 4:
+                return "centerMiddle";
+                break;
+            case 5:
+                return "centerRight";
+                break;
+            case 6:
+                return "bottomLeft";
+                break;
+            case 7:
+                return "bottomMiddle";
+                break;
+            case 8:
+                return "bottomRight";
+                break;
+            default:
+                return "none";
+        }
+    }
 
     playTurn(position){
         if(this.game.isValidMove(position)){
@@ -51,8 +90,8 @@ class TicTacToe{
 
 window.onload = function () {
 	console.log("check on load");
-	let game = new Game();
-	let view = new View();
+	const game = new Game();
+	const view = new View();
 
 	const tictactoe = new TicTacToe(game,view,"PVAI");
 	// setTimeout(function(){
