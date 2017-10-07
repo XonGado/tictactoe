@@ -1,5 +1,8 @@
 "use strict";
 
+
+
+
 class Game {
     constructor(){
         this.state = {
@@ -19,5 +22,16 @@ class Game {
 
     move(player, placement){
         this.state[placement] = player;
+        changeTurn();
+    }
+
+    changeTurn(){
+        if(this.currentPlayer == "x"){
+            this.currentPlayer = "o";
+        }
+        else{
+            this.currentPlayer = "x";
+        }
+        this.turnNumber++;
     }
 }
