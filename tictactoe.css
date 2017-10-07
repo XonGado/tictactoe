@@ -58,6 +58,17 @@ span.o{
 	border: 0.5em solid #ed2a2a;
 	border-radius: 50%;
 	position: absolute;
+	opacity: 0;
+	transition: 0.4s;
+}
+
+.tile:hover span.o{
+	opacity: 0.5;
+}
+
+.tile:active span.o,
+.tile:focus span.o{
+	opacity: 1;
 }
 
 span.x{
@@ -68,6 +79,7 @@ span.x{
 	justify-content: center;
 	align-items: center;
 	transform: translate(0, -0.25em);
+	display: none;
 }
 
 span.x:before,
