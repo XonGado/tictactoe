@@ -22,7 +22,7 @@ class Game {
 
     move(player, placement){
         this.state[placement] = player;
-        changeTurn();
+        this.changeTurn();
     }
 
     changeTurn(){
