@@ -17,11 +17,7 @@ class Game {
     move(player, position){
         var tiles = document.getElementsByClassName("tile");
         tiles[position].className += " active";
-
-        // tiles[position].removeEventListener("mouseover", hover);
-        // tiles[position].removeEventListener("mouseleave", leave);
-        // console.log("removed event listeners.");
-
+        
         this.state[position] = player;
         this.changeTurn();
     }

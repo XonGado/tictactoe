@@ -35,8 +35,8 @@ class TicTacToe{
 		tile.addEventListener("click", function(){
 			that.playTurn(index);
 		});
-		// tile.addEventListener("mouseover", hover(index, that));
-		// tile.addEventListener("mouseleave", leave(index, that));
+		tile.addEventListener("mouseover", function(){return hover(index, that)});
+		tile.addEventListener("mouseleave", function(){return leave(index, that)});
 	}
 
     playTurn(position){
@@ -81,24 +81,32 @@ window.onload = function () {
     
 };
 
-// function hover(index, tictactoe){
-// 	var tiles = document.getElementsByClassName("tile");
-// 	if (tictactoe.game.currentPlayer == PLAYER_O) {
-// 		tiles[index].children[0].style.opacity = 0.5;
-// 	}
-// 	else {
-// 		tiles[index].children[1].style.opacity = 0.5;
-// 	}
-// 	console.log("hovered on tile.")
-// }
+function hover(index, tictactoe){
+	var tiles = document.getElementsByClassName("tile");
+	if (!(hasClass(tiles[index], "active"))) {
+		if (tictactoe.game.currentPlayer == PLAYER_O) {
+			tiles[index].children[0].style.opacity = 0.5;
+		}
+		else {
+			tiles[index].children[1].style.opacity = 0.5;
+		}
+		// console.log("hovered on tile.")
+	}
+}
 
-// function leave(index, tictactoe){
-// 	var tiles = document.getElementsByClassName("tile");
-// 	if (tictactoe.game.currentPlayer == PLAYER_O) {
-// 		tiles[index].children[0].style.opacity = 0;
-// 	}
-// 	else {
-// 		tiles[index].children[1].style.opacity = 0;
-// 	}
-// 	console.log("leaved tile.");
-// };
+function leave(index, tictactoe){
+	var tiles = document.getElementsByClassName("tile");
+	if (!(hasClass(tiles[index], "active"))) {
+		if (tictactoe.game.currentPlayer == PLAYER_O) {
+			tiles[index].children[0].style.opacity = 0;
+		}
+		else {
+			tiles[index].children[1].style.opacity = 0;
+		}
+		// console.log("leaved tile.");
+	}
+};
+
+function hasClass( target, className ) {
+    return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
+}
