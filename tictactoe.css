@@ -52,7 +52,11 @@ body{
 	transition: 0.4s;
 }
 
-.tile:active{
+/* .tile:active{
+	background-color: rgba(255, 255, 255, 0.1);
+} */
+
+.tile.active{
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -66,7 +70,7 @@ span.o{
 	opacity: 0;
 	transition: 0.4s;
 }
-
+/* 
 .tile:hover span.o{
 	opacity: 0.5;
 }
@@ -83,7 +87,7 @@ span.o{
 .tile:active span.x,
 .tile:focus span.x{
 	opacity: 1;
-}
+} */
 
 span.x{
 	position: absolute;
