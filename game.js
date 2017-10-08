@@ -15,6 +15,9 @@ class Game {
     }
 
     move(player, position){
+        var tiles = document.getElementsByClassName("tile");
+        tiles[position].className += " active";
+        
         this.state[position] = player;
         this.changeTurn();
     }

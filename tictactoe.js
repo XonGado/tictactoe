@@ -29,20 +29,26 @@ class TicTacToe{
                 }
             }
 		});
-    }
-    
-    
-    
+
+		tile.addEventListener("mouseover", function(){return hover(index, that)});
+		tile.addEventListener("mouseleave", function(){return leave(index, that)});
+	}
 
     playTurn(position){
+    	// console.log(position);
         if(this.game.isValidMove(position)){
+        	var status = document.getElementById("status");
             // Human
             if(this.game.currentPlayer == PLAYER_X){
                 this.game.move(PLAYER_X, position);
+                this.view.display(this.game);
+                status.innerHTML = "It is your turn.";
             }
             // AI 
             else{
                 this.game.move(PLAYER_O, position);
+                this.view.display(this.game);
+                status.innerHTML = "It is my turn.";
             }
             
             this.view.display(this.game);
@@ -61,6 +67,7 @@ class TicTacToe{
 }
 
 window.onload = function () {
+
 	console.log("check on load");
 	const game = new Game();
 	const view = new View();
@@ -70,3 +77,33 @@ window.onload = function () {
 
     
 };
+
+function hover(index, tictactoe){
+	var tiles = document.getElementsByClassName("tile");
+	if (!(hasClass(tiles[index], "active"))) {
+		if (tictactoe.game.currentPlayer == PLAYER_O) {
+			tiles[index].children[0].style.opacity = 0.5;
+		}
+		else {
+			tiles[index].children[1].style.opacity = 0.5;
+		}
+		// console.log("hovered on tile.")
+	}
+}
+
+function leave(index, tictactoe){
+	var tiles = document.getElementsByClassName("tile");
+	if (!(hasClass(tiles[index], "active"))) {
+		if (tictactoe.game.currentPlayer == PLAYER_O) {
+			tiles[index].children[0].style.opacity = 0;
+		}
+		else {
+			tiles[index].children[1].style.opacity = 0;
+		}
+		// console.log("leaved tile.");
+	}
+};
+
+function hasClass( target, className ) {
+    return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
+}

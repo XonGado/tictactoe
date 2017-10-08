@@ -52,50 +52,47 @@ body{
 	transition: 0.4s;
 }
 
-.tile:active{
+/* .tile:active{
+	background-color: rgba(255, 255, 255, 0.1);
+} */
+
+.tile.active{
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
-span.o{
-	display: inline-block;
+.tile.active.win{
+	/* background-color: rgba(255, 255, 255, 0.2);  */
+	border: 2px solid #888;
+	/* box-shadow: 0 0 2px rgba(255, 255, 255, 1); */
+}
+
+span.o,
+span.x{
+	opacity: 0;
+	transition: opacity 0.4s, transform 0.1s;
+	position: absolute;
 	width: 50%;
 	height: 50%;
-	border: 0.5em solid #ed2a2a;
+}
+
+span.o{
 	border-radius: 50%;
-	position: absolute;
-	opacity: 0;
-	transition: 0.4s;
-}
-
-.tile:hover span.o{
-	opacity: 0.5;
-}
-
-.tile:active span.o,
-.tile:focus span.o{
-	opacity: 1;
-}
-
-.tile:hover span.x{
-	opacity: 0.5;
-}
-
-.tile:active span.x,
-.tile:focus span.x{
-	opacity: 1;
+	display: inline-block;
+	border: 0.5em solid #ed2a2a;
 }
 
 span.x{
-	position: absolute;
-	height: 50%;
-	width: 50%;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	transform: translate(0, -0.25em);
-	transition: 0.4s;
-	opacity: 0;
-	/* display: none; */
+}
+
+.tile:active span.o,
+.tile:focus span.o,
+.tile:active span.x,
+.tile:focus span.x{
+	transform: scale(1.7, 1.7);
 }
 
 span.x:before,
