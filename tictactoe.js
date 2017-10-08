@@ -1,20 +1,10 @@
-
-
-// view.display(game);
-// game.move("x", "topLeft");
-// view.display(game);
-// game.move("o", "centerMiddle");
-// view.display(game);
-
-
-
-
 class TicTacToe{
-    constructor(game, view, gameType){
+    constructor(game, view, gameType, player_AI){
         this.game = game;
         this.view = view;
         this.gameType = gameType;
         this.setUpListeners();
+        this.player_AI = player_AI;
         console.log("check");
     }
 
@@ -33,23 +23,40 @@ class TicTacToe{
         const that = this;
         console.log(that);
 		tile.addEventListener("click", function(){
-			that.playTurn(index);
+            if(that.playTurn(index)){
+                if(!that.game.isGameOver()){
+                    that.playTurn(that.player_AI.thinkMove());                    
+                }
+            }
 		});
-	}
+    }
+    
+    
+    
 
     playTurn(position){
         if(this.game.isValidMove(position)){
             // Human
             if(this.game.currentPlayer == PLAYER_X){
                 this.game.move(PLAYER_X, position);
-                this.view.display(this.game);
             }
             // AI 
             else{
                 this.game.move(PLAYER_O, position);
-                this.view.display(this.game);
             }
-        }    
+            
+            this.view.display(this.game);
+            
+            if(this.game.isGameOver()){
+                console.log("Game Over!");
+            }
+            
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 }
 
@@ -57,19 +64,9 @@ window.onload = function () {
 	console.log("check on load");
 	const game = new Game();
 	const view = new View();
+    const player_AI = new Dummy(game);
 
-	const tictactoe = new TicTacToe(game,view,"PVAI");
-	// setTimeout(function(){
-	//     tictactoe.playTurn("topRight");
-	//     setTimeout(function(){
-	//         tictactoe.playTurn("topLeft");
-	//         setTimeout(function(){
-	//             tictactoe.playTurn("centerRight");
-	//             setTimeout(function(){
-	//                 tictactoe.playTurn("topRight");
-	//             }, 1000);
-	//         }, 1000);
-	//     }, 1000);
-    // }, 1000);
+	const tictactoe = new TicTacToe(game, view, "PVAI", player_AI);
+
     
 };
