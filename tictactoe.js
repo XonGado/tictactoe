@@ -55,6 +55,7 @@ class TicTacToe{
             
             if(this.game.isGameOver()){
                 console.log("Game Over!");
+                status.innerHTML = "Game Over!";
             }
             
             return true;

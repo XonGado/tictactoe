@@ -59,7 +59,6 @@ class Game {
 
         // 8 Conditions, no time to create an efficient algorithm        
 
-
         if(
             checkEqual([stateTested[0], stateTested[1], stateTested[2], player]) || 
             checkEqual([stateTested[3], stateTested[4], stateTested[5], player]) || 

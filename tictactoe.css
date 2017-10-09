@@ -69,7 +69,7 @@ body{
 span.o,
 span.x{
 	opacity: 0;
-	transition: opacity 0.4s, transform 0.1s;
+	transition: opacity 0.4s, transform 0.3s;
 	position: absolute;
 	width: 50%;
 	height: 50%;
@@ -89,10 +89,13 @@ span.x{
 }
 
 .tile:active span.o,
-.tile:focus span.o,
+.tile:focus span.o{
+	transform: scale(1.7, 1.7);
+}
+
 .tile:active span.x,
 .tile:focus span.x{
-	transform: scale(1.7, 1.7);
+	transform: scale(1.7, 1.7) translate(0, -0.2em);
 }
 
 span.x:before,
