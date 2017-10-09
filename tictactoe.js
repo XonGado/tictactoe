@@ -25,7 +25,12 @@ class TicTacToe{
 		tile.addEventListener("click", function(){
             if(that.playTurn(index)){
                 if(!Game.isGameOver(that.game.state)){
+
+                	showLoading();
+
                     const move = that.player_AI.thinkMove();
+                    
+                    hideLoading();
                     console.log("this is move " +move);
                     that.playTurn(move);               
                 }
@@ -57,10 +62,19 @@ class TicTacToe{
             }
             
             this.view.display(this.game);
-            
+              
             if(Game.isGameOver(this.game.state)){
                 console.log("Game Over!");
-                status.innerHTML = "Game Over!";
+
+                if (Game.isWin(PLAYER_X, this.game.state)) {
+	                status.innerHTML = "Game Over! Player X wins!";
+                }
+                else if (Game.isWin(PLAYER_O, this.game.state)) {
+	                status.innerHTML = "Game Over! Player O wins!";
+                }
+                else {
+	                status.innerHTML = "Game Over! It's a draw.";
+                }
             }
             
             return true;
@@ -78,7 +92,7 @@ window.onload = function () {
 	console.log("check on load");
 	const game = new Game();
 	const view = new View();
-    const player_AI = new ComputerPlayer(PLAYER_O,game);
+    const player_AI = new Dummy(PLAYER_O,game);
 
 	const tictactoe = new TicTacToe(game, view, "PVAI", player_AI);
 
@@ -113,4 +127,14 @@ function leave(index, tictactoe){
 
 function hasClass( target, className ) {
     return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
+}
+
+function showLoading(){
+	var spinner = document.getElementById("spinner");
+	spinner.style.opacity = 1.0;
+}
+
+function hideLoading(){
+	var spinner = document.getElementById("spinner");
+	spinner.style.opacity = 0;
 }
