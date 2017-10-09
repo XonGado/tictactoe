@@ -39,14 +39,34 @@ class Game {
         return false;
     }
 
-    isGameOver(){
-        if(this.isWin(PLAYER_O) || this.isWin(PLAYER_X) || this.turnNumber == BOARD_LENGTH+1){
+    static isGameOver(gameState){
+        if(Game.isWin(PLAYER_O, gameState) || Game.isWin(PLAYER_X, gameState) || Game.getAvailableMoves(gameState).length == 0){
             return true;
         }
         return false;
     }
 
-    isWin(player, state){
+    static getAvailableMoves(gameState){
+        let moves = [];
+        for (var i = 0; i < 9; i++) {
+            if(gameState[i] == BLANK){
+                moves.push(i);
+            }
+        }
+        return moves;
+    }
+    
+    static activeTurn(gameState){
+        let availMoves = Game.getAvailableMoves(gameState);
+        if(availMoves.length % 2 == 0){
+            return PLAYER_X;
+        }
+        else{
+            return PLAYER_O;
+        }
+    }
+
+    static isWin(player, state){
         let stateTested = [];
         if(state){
             stateTested = state;
@@ -59,11 +79,19 @@ class Game {
 
         // 8 Conditions, no time to create an efficient algorithm        
 
-
         if(
             checkEqual([stateTested[0], stateTested[1], stateTested[2], player]) || 
             checkEqual([stateTested[3], stateTested[4], stateTested[5], player]) || 
-            checkEqual([stateTested[6], stateTested[7], stateTested[8], player]) 
+            checkEqual([stateTested[6], stateTested[7], stateTested[8], player]) ||
+
+            
+            checkEqual([stateTested[0], stateTested[3], stateTested[6], player]) || 
+            checkEqual([stateTested[1], stateTested[4], stateTested[7], player]) || 
+            checkEqual([stateTested[2], stateTested[5], stateTested[8], player]) ||
+
+            
+            checkEqual([stateTested[0], stateTested[4], stateTested[8], player]) || 
+            checkEqual([stateTested[2], stateTested[4], stateTested[6], player])
             
         ){
             return true;

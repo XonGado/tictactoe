@@ -1,6 +1,7 @@
 class Dummy{
-    constructor(game){
+    constructor(player_option,game){
         this.game = game;
+        this.player_option = player_option;
     }
 
     thinkMove(){

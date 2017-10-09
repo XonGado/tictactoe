@@ -24,8 +24,10 @@ class TicTacToe{
         console.log(that);
 		tile.addEventListener("click", function(){
             if(that.playTurn(index)){
-                if(!that.game.isGameOver()){
-                    that.playTurn(that.player_AI.thinkMove());                    
+                if(!Game.isGameOver(that.game.state)){
+                    const move = that.player_AI.thinkMove();
+                    console.log("this is move " +move);
+                    that.playTurn(move);               
                 }
             }
 		});
@@ -35,17 +37,20 @@ class TicTacToe{
 	}
 
     playTurn(position){
+        
     	// console.log(position);
         if(this.game.isValidMove(position)){
         	var status = document.getElementById("status");
             // Human
             if(this.game.currentPlayer == PLAYER_X){
+                console.log("Playing move Human:" + position);
                 this.game.move(PLAYER_X, position);
                 this.view.display(this.game);
                 status.innerHTML = "It is your turn.";
             }
             // AI 
             else{
+                console.log("Playing move:" + position);
                 this.game.move(PLAYER_O, position);
                 this.view.display(this.game);
                 status.innerHTML = "It is my turn.";
@@ -53,13 +58,14 @@ class TicTacToe{
             
             this.view.display(this.game);
             
-            if(this.game.isGameOver()){
+            if(Game.isGameOver(this.game.state)){
                 console.log("Game Over!");
             }
             
             return true;
         }
         else{
+            console.log("Invalid MOVE!")
             return false;
         }
 
@@ -71,7 +77,7 @@ window.onload = function () {
 	console.log("check on load");
 	const game = new Game();
 	const view = new View();
-    const player_AI = new Dummy(game);
+    const player_AI = new ComputerPlayer(PLAYER_O,game);
 
 	const tictactoe = new TicTacToe(game, view, "PVAI", player_AI);
 
