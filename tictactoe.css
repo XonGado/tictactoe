@@ -118,10 +118,10 @@ span.x:after{
 #spinner{
 	height: 2em;
 	width: 2em;
-	display: block;
+	display: inline-block;
 	position: absolute;
-	bottom: 1em;
-	right: 1em;
+	bottom: 2em;
+	right: 50%;
 	border: 0.25em solid #555;
 	border-color: transparent #555 #555 #555;
 	border-radius: 50%;

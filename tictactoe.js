@@ -25,16 +25,24 @@ class TicTacToe{
         console.log(that);
 		tile.addEventListener("click", function(){
             if(that.playTurn(index)){
+
                 if(!Game.isGameOver(that.game.state)){
 
                 	showLoading();
 
-                    const move = that.player_AI.thinkMove();
                     
-                    hideLoading();
-                    console.log("this is move " +move);
-                    that.playTurn(move);               
+                    setTimeout(function() {
+                        const move = that.player_AI.thinkMove();
+                        hideLoading();
+                        console.log("this is move " +move);
+                        that.playTurn(move);
+                    }, 100);
+
+                    
+
+                                   
                 }
+            
             }
 		});
 
