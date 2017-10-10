@@ -6,6 +6,7 @@ class TicTacToe{
         this.setUpListeners();
         this.player_AI = player_AI;
         console.log("check");
+        this.view.display(this.game);
     }
 
     setUpListeners(){

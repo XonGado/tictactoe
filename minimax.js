@@ -1,3 +1,5 @@
+const DEPTH = 6;
+
 class ComputerPlayer{
     constructor(player_side, game){
         this.player_side = player_side;
@@ -13,16 +15,27 @@ class ComputerPlayer{
     }
 
     thinkMove(){
-        const choice = ComputerPlayer.minimax(this.game.state, this.player_side).choice;
+        const choice = ComputerPlayer.minimax(this.game.state, this.player_side, DEPTH).choice;
         console.log(choice);
         return choice;
     }
 
-    static minimax(gameState, player_side){
+    static minimax(gameState, player_side, depth){
+
+
         if(Game.isGameOver(gameState)){
-            console.log("Returning a score: "+ ComputerPlayer.score(gameState));
-            return ComputerPlayer.score(gameState);
+            console.log("Returning a score: "+ ComputerPlayer.score(gameState, depth));
+            return {
+                "score": ComputerPlayer.score(gameState, depth)
+            }
         }
+
+        if(depth == 0){
+            return {
+                "score": 0
+            }
+        }
+
         let scores = [];
         let moves = [];
 
@@ -43,8 +56,7 @@ class ComputerPlayer{
             console.log(possible_game);
 
             
-            let testScore = ComputerPlayer.minimax(possible_game, next_side);
-            console.log("Pushing this one: " + testScore);
+            let testScore = ComputerPlayer.minimax(possible_game, next_side, depth - 1).score;
             scores.push(testScore);
             moves.push(availMoves[i]);
         }
@@ -69,33 +81,18 @@ class ComputerPlayer{
         return scoreChoice;
     }
 
-    static score(gameState){
-        if(Game.isWin(PLAYER_X, gameState)){
-            return 10;
+    static score(gameState, depth){
+        if(Game.isWin(PLAYER_O, gameState)){
+            return 10 + depth;
         }
         else if(Game.isWin(PLAYER_X, gameState)){
-            return -10;
+            return -10 - depth;
         }
         else{
             return 0;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

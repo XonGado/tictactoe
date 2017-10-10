@@ -9,6 +9,10 @@ const BOARD_LENGTH = 9;
 
 class Game {
     constructor(){
+        this.state = [PLAYER_X,     PLAYER_O,   BLANK,
+            BLANK,        PLAYER_X,   BLANK,
+            BLANK,        BLANK,      PLAYER_O    
+        ];
         this.state = new Array(BOARD_LENGTH).fill(BLANK);
         this.turnNumber = 1;
         this.currentPlayer = PLAYER_X;
@@ -92,7 +96,6 @@ class Game {
             
             checkEqual([stateTested[0], stateTested[4], stateTested[8], player]) || 
             checkEqual([stateTested[2], stateTested[4], stateTested[6], player])
-            
         ){
             return true;
         }
