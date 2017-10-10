@@ -52,14 +52,14 @@ class TicTacToe{
                 console.log("Playing move Human:" + position);
                 this.game.move(PLAYER_X, position);
                 this.view.display(this.game);
-                status.innerHTML = "It is your turn.";
+                status.innerHTML = "It is my turn.";
             }
             // AI 
             else{
                 console.log("Playing move:" + position);
                 this.game.move(PLAYER_O, position);
                 this.view.display(this.game);
-                status.innerHTML = "It is my turn.";
+                status.innerHTML = "It is your turn, stupid master.";
             }
             
             this.view.display(this.game);
@@ -93,7 +93,7 @@ window.onload = function () {
 	console.log("check on load");
 	const game = new Game();
 	const view = new View();
-    const player_AI = new Dummy(PLAYER_O,game);
+    const player_AI = new ComputerPlayer(PLAYER_O,game);
 
 	const tictactoe = new TicTacToe(game, view, "PVAI", player_AI);
 
