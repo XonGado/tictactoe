@@ -67,7 +67,7 @@ class TicTacToe{
                 console.log("Playing move:" + position);
                 this.game.move(PLAYER_O, position);
                 this.view.display(this.game);
-                status.innerHTML = "It is your turn, stupid master.";
+                status.innerHTML = "It is your turn, mere human.";
             }
             
             this.view.display(this.game);
